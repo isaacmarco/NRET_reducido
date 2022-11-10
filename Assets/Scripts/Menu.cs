@@ -8,17 +8,19 @@ using TMPro;
 public class Menu : MonoBehaviour
 {
 
-    public RectTransform canvasRect; 
 
-    public RectTransform CanvasRect 
+    void Awake()
     {
-        get {return canvasRect;}
+        Screen.SetResolution(1920, 1080, true);
     }
 
-    public void Salir()
+
+    private void Update()
     {
-        Application.Quit();
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
     }
+
 
   
     
