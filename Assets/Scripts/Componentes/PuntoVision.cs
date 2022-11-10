@@ -6,15 +6,10 @@ using Tobii.Gaming;
 
 public class PuntoVision : MonoBehaviour
 {   
-    // para la tarea de evaluacion 
-    [SerializeField] private bool usandoJoystick; 
+    
 
     private Image imagenPunto; 
-    private float alphaNormal = 0.4f; 
-    private float alphaSeleccion = 1f; 
     private Vector2 puntoFiltrado = Vector2.zero;   
-    [SerializeField] private bool noCambiarColorDelPunto = false; 
-    [SerializeField] private bool soloMoverEnHorizontal = false; 
     [SerializeField] private RectTransform canvasRect; 
     
     private Vector2 posicioEnPantalla; 
@@ -35,22 +30,7 @@ public class PuntoVision : MonoBehaviour
     void Update()
     {
 
-        
-        // actualizar alpha del punto dependiendo de si estamos
-        // mirando a un objeto del juego 
-        GameObject objetoFijado = TobiiAPI.GetFocusedObject();
-
-        // esta tarea puede estar necesitando su propio color para el punto de vision
-        if(!noCambiarColorDelPunto)
-        {
-            if(objetoFijado!=null)
-            {
-                imagenPunto.color = new Color(1f, 1f, 1f, alphaNormal);
-            } else {
-                imagenPunto.color = new Color(1f, 1f, 1f, alphaSeleccion);
-            }
-        }
-      
+               
 
         GazePoint gazePoint = TobiiAPI.GetGazePoint();
 
@@ -63,6 +43,7 @@ public class PuntoVision : MonoBehaviour
                 Mathf.RoundToInt(puntoFiltrado.y)
             );
 
+            Debug.Log(posicionEntera); 
 
             // posicionamos el punto. Debido al punto de pivote y configuracion
             // del canvas, podemos utilizar directamente las coordenadas en 
